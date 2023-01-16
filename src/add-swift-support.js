@@ -125,6 +125,10 @@ module.exports = context => {
               xcodeProject.updateBuildProperty('IPHONEOS_DEPLOYMENT_TARGET', IOS_MIN_DEPLOYMENT_TARGET, buildConfig.name);
               console.log('Update IOS project deployment target to:', IOS_MIN_DEPLOYMENT_TARGET, 'for build configuration', buildConfig.name);
             }
+            if (xcodeProject.getBuildProperty('SWIFT_OBJC_INTERFACE_HEADER_NAME', buildConfig.name) !== '"OutSystems-Swift.h"') {
+            xcodeProject.updateBuildProperty('SWIFT_OBJC_INTERFACE_HEADER_NAME', '"OutSystems-Swift.h"', buildConfig.name);
+            console.log('Update IOS build setting SWIFT_OBJC_INTERFACE_HEADER_NAME to:', '"OutSystems-Swift.h"', 'for build configuration', buildConfig.name);
+            }
 
             if (xcodeProject.getBuildProperty('ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES', buildConfig.name) !== 'YES') {
               xcodeProject.updateBuildProperty('ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES', 'YES', buildConfig.name);
